@@ -2,13 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// -----------
+/// CISC 496 - Group P1 - Project: Eye Say
+/// Description: Spell protoype
+/// How to use: See specific spell for details
+/// Written by: Sammy Chan
+/// ---------- 
+
 public class Spell : MonoBehaviour
 {
     public GameObject projectile;
     public float speed = 100f;
-    
 
-    //Fire ball spell, make sure projectile spell gas gravity set to 0
+    /// ---
+    /// Fire ball spell, make sure projectile spell has gravity set to 0
+    /// Shoots fireball in forward direction of object it is attached to
+    ///
+    /// Instantiate(projectile, [Change this code to alter spawning position of projectile], Quaternion.identity)
+    /// ---
     void Fireball()
     {
 
@@ -17,7 +28,8 @@ public class Spell : MonoBehaviour
         fireBallRigidBody.AddForce(Vector3.forward * speed);
     }
 
-    // Update is called once per frame
+    /// Temporary trigger so that I could test the spell without a mic,
+    ///     DELETE in final build, or keep as secret debug-mode function
     void Update()
     {
         //Placeholder trigger, replace with successful incantation

@@ -2,9 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// -----------
+/// CISC 496 - Group P1 - Project: Eye Say
+/// Description: Code to destroy projectile and target once it has collided with and object, and then plays a particle effect
+/// How to use: Script should be already be attached to the projectile prefab
+///     If the other is tagged "destructible" they will be destroyed, otherwise only the projectile is destroyed
+///     Tag killable enemies and destructible hazards with "destructible"
+/// Written by: Sammy Chan
+/// ---------- 
+
 public class DestroyProjectile : MonoBehaviour
 {
-
     public GameObject particle;
     private float elapsedTime;
 

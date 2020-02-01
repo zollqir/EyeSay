@@ -4,19 +4,14 @@ using UnityEngine;
 
 /// -----------
 /// CISC 496 - Group P1 - Project: Eye Say
-/// Description: Script to give object a hovering and spinning effect
+/// Description: Script to bob the skull up and down
 /// How to use:
-///     Create an 'Empty' object and have the 3D model be a child of the hierarchy
-///     Attach the script to the 'Empty' object
-///         otherwise, if attached to the 3d model itself it will look weird
+///     Attach to 'Empty' object that is child of the main 'Empty' object
 /// Written by: Sammy Chan
 /// ---------- 
 
-public class itemhover : MonoBehaviour
+public class SkullShake : MonoBehaviour
 {
-
-    public bool rotates = true;
-
     private float originalY;
     private bool goingUp = true;
     private float offset = 0.9f;
@@ -29,7 +24,7 @@ public class itemhover : MonoBehaviour
         maxTop = originalY + offset;
         maxBot = originalY - offset;
     }
-    
+
 
     // Update is called once per frame
     void Update()
@@ -52,10 +47,5 @@ public class itemhover : MonoBehaviour
             transform.Translate(Vector3.down * Time.deltaTime);
         }
 
-        if (rotates)
-        {
-            transform.RotateAround(transform.position, Vector3.up, 60 * Time.deltaTime);
-        }
-        
     }
 }
