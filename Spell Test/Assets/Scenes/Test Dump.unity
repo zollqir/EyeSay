@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571336, b: 0.3069219, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -807,14 +807,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc634653c74264b39af4a7118de34956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pcCanvas: {fileID: 0}
-  textMeshM: {fileID: 0}
   projectile: {fileID: 7672468744343192702, guid: 01ae570a9b56945e1b6f668010b05082,
     type: 3}
   speed: 50
-  subjects: []
-  predicates: []
-  objects: []
+  ui: {fileID: 0}
 --- !u!1 &550600545
 GameObject:
   m_ObjectHideFlags: 0
@@ -22939,14 +22935,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc634653c74264b39af4a7118de34956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pcCanvas: {fileID: 0}
-  textMeshM: {fileID: 184460303}
   projectile: {fileID: 7672468744343192702, guid: 01ae570a9b56945e1b6f668010b05082,
     type: 3}
   speed: 50
-  subjects: []
-  predicates: []
-  objects: []
+  ui: {fileID: 629428507}
 --- !u!65 &1951654408
 BoxCollider:
   m_ObjectHideFlags: 0
