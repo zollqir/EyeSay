@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7815212660846482931
 Transform:
   m_ObjectHideFlags: 0
@@ -153,6 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   theCrystal: {fileID: 5310164623123648169}
+  glow: {fileID: 0}
   onMat: {fileID: 2100000, guid: 7e51ad92fd04349e08b791e5ad600ed1, type: 2}
   offMat: {fileID: 2100000, guid: 49d14038eeace4bc88493f2e44807471, type: 2}
 --- !u!65 &4220035034287758530
