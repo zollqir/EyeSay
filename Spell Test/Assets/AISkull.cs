@@ -8,7 +8,8 @@ using UnityEngine;
 ///     Modify and Repurpose for different enemy types
 /// How to use: 
 /// Written by: Sammy Chan
-/// ---------- 
+/// ----------
+/// 
 
 public class CircularPatrolNode : AINode
 {

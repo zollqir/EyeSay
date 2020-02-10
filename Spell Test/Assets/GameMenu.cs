@@ -94,6 +94,10 @@ public class GameMenu : MonoBehaviour
         Time.timeScale = 1f;
     }
 
+    public bool checkPaused()
+    {
+        return isPaused;
+    }
 
     //Win Stuff//
     public void Win()

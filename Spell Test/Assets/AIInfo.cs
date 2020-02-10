@@ -143,4 +143,12 @@ public class AIInfo : MonoBehaviour
         hostileEffect.SetActive(true);
         AdjustSpeed(5);
     }
+
+    //public void iSVisible()
+    //{
+    //    if (renderer.IsVisibleFrom(Camera.main))
+    //    {
+
+    //    }
+    //}
 }

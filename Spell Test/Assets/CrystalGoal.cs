@@ -17,18 +17,26 @@ public class CrystalGoal : MonoBehaviour
     public bool active = false;
 
     public GameObject theCrystal;
+    public GameObject glow;
     public Material onMat;
     public Material offMat;
+
+    private void Start()
+    {
+        glow = this.gameObject.transform.GetChild(1).gameObject;
+    }
 
     public void Activate()
     {
         active = true;
         theCrystal.GetComponent<MeshRenderer>().material = onMat;
+        glow.SetActive(true);
     }
     public void Deactivate()
     {
         active = false;
         theCrystal.GetComponent<MeshRenderer>().material = offMat;
+        glow.SetActive(false);
     }
 
     // Update is called once per frame
