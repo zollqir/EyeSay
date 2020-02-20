@@ -9,6 +9,7 @@ TagManager:
   - projectile
   - FxTemporaire
   - player
+  - scroll
   layers:
   - Default
   - TransparentFX
