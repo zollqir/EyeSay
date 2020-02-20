@@ -23,7 +23,7 @@ public class GenerateSpell : MonoBehaviour
     public List<string> subjectList = new List<string>();
     public List<string> predicateList = new List<string>();
     public List<string> objectList = new List<string>();
-    public string spellPath;
+    ///public string spellPath;
 
     private KeywordRecognizer keywordRecognizer;
     private Dictionary<string, Action> actions = new Dictionary<string, Action>();
@@ -40,19 +40,14 @@ public class GenerateSpell : MonoBehaviour
         string sPath = Application.dataPath + "/subjects.txt";
         string pPath = Application.dataPath + "/predicates.txt";
         string oPath = Application.dataPath + "/objects.txt";
-        spellPath = Application.dataPath + "/spells.txt";
-
-        ClearFile(spellPath);
+        
+        ///spellPath = Application.dataPath + "/spells.txt";
+        ///ClearFile(spellPath);
 
         ReadFile(sPath, "subjects");
         ReadFile(pPath, "predicates");
-        ReadFile(oPath, "objects");
-
+        ReadFile(oPath, "objects");        
         AddNewSpell("Fireball");
-
-        keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
-        keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;
-        keywordRecognizer.Start();
     }
 
     /// <summary>
@@ -131,35 +126,53 @@ public class GenerateSpell : MonoBehaviour
     /// <param name="spellType"></param>
     public void AddNewSpell(string spellType)
     {
-        string filePath = spellPath;
-        string line = null;
+        ///string filePath = spellPath;
+        ///string line = null;
         string newSpell = GenerateIncantation();
+        while (actions.ContainsKey(newSpell))
+        {
+            newSpell = GenerateIncantation();
+        }
+        /*
         StreamReader sReader = new StreamReader(filePath);
         while ((line = sReader.ReadLine()) != null)
         {
             if (string.Compare(line, newSpell) == 0)
             {
-                newSpell = GenerateIncantation();
-                continue;
+                newSpell = GenerateIncantation();               
             }
+            continue;
         }
         sReader.Close();
         StreamWriter sWriter = new StreamWriter(filePath, append: true);
         sWriter.WriteLine(newSpell);
         sWriter.Close();
+        */
 
-        Debug.Log(newSpell);
         actions.Add(newSpell, Fireball);
-        Debug.Log(actions[newSpell]);
         
+
+
 
         if (spell0.text == "")
         {
-            spell0.text = newSpell + "| " + spellType;
+            spell0.text = newSpell + " | " + spellType;
         }
         else if (spell1.text == "")
         {
-            spell1.text = newSpell + "| " + spellType;
+            spell1.text = newSpell + " | " + spellType;
+        }
+        else if (spell2.text == "")
+        {
+            spell2.text = newSpell + " | " + spellType;
+        }
+        else if (spell3.text == "")
+        {
+            spell3.text = newSpell + " | " + spellType;
+        }
+        else if (spell4.text == "")
+        {
+            spell4.text = newSpell + " | " + spellType;
         }
     }
 
@@ -205,6 +218,22 @@ public class GenerateSpell : MonoBehaviour
         }
 
     }
+    
+    public void EnableRecognizer()
+    {
+        keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
+        keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;
+        keywordRecognizer.Start();
+    }
+
+    public void DisableRecognizer()
+    {
+        if (keywordRecognizer != null && keywordRecognizer.IsRunning)
+        {
+            keywordRecognizer.Stop();
+        }
+    }
+
     void Update()
     {
         //Placeholder trigger, replace with successful incantation
@@ -213,4 +242,5 @@ public class GenerateSpell : MonoBehaviour
             AddNewSpell("Fireball");
         }
     }
+    
 }

@@ -790,7 +790,7 @@ namespace Valve.VR
                     initializedAttachPoints = true;
                 }
 
-                bool visible = (componentState.uProperties & (uint)EVRComponentProperty.IsVisible) != 0;
+                bool visible = false;//(componentState.uProperties & (uint)EVRComponentProperty.IsVisible) != 0;
                 if (visible != child.gameObject.activeSelf)
                 {
                     child.gameObject.SetActive(visible);
