@@ -14,9 +14,11 @@ public class Spell : MonoBehaviour
     public GameObject projectile;
     public float speed = 100f;
     public GameObject ui;
+    public GameObject barrier;
 
     /// ---
-    /// Fire ball spell, make sure projectile spell has gravity set to 0
+    /// Fire ball spell
+    /// Make sure projectile spell has gravity set to 0
     /// Shoots fireball in forward direction of object it is attached to
     ///
     /// Instantiate(projectile, [Change this code to alter spawning position of projectile], Quaternion.identity)
@@ -31,14 +33,62 @@ public class Spell : MonoBehaviour
         }
     }
 
+    /// ---
+    /// Petrify Spell
+    /// Only works on ghosts and skullbats
+    /// Finds camera with viewCheck script and runs it to see which enemies are in view
+    ///     If in view, sets their petrified status to true
+    /// Once petrifed, enemies are no longer considered hazards and ghosts become visible
+    /// 
+    /// ---
+    void Petrify()
+    {
+        if (ui.GetComponent<GameMenu>().isPaused)
+        {
+            return;
+        }
+        AIInfo[] enemies = FindObjectsOfType<AIInfo>();
+
+        ViewCheck vrCam = FindObjectOfType<ViewCheck>();
+
+        foreach(AIInfo enemy in enemies)
+        {
+            if (vrCam.InView(enemy.gameObject))
+            {
+                enemy.petrified = true;
+            }
+        }
+    }
+
+    /// ---
+    /// Barrier Spell
+    ///     Works with attached gameObject barrier
+    ///     The Barriers should be attached to the vrCam
+    ///     Calling this simply sets it to active and resets the timer for the shield
+    ///     The shield will deactivate itself on its own within 10 seconds
+    ///     Calling this spell again while the shield is still will reset the timer of the shield
+    /// ---
+    void Barrier()
+    {
+        if (ui.GetComponent<GameMenu>().isPaused)
+        {
+            return;
+        }
+        barrier.SetActive(true);
+        barrier.GetComponent<ShieldScript>().ResetShield();
+    }
+
     /// Temporary trigger so that I could test the spell without a mic,
-    ///     DELETE in final build, or keep as secret debug-mode function
+    ///     DELETE/Comment out in final build, or keep as secret debug-mode function
+    ///
     void Update()
     {
         //Placeholder trigger, replace with successful incantation
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Fireball();
+            //Fireball();
+            Petrify();
+            //Barrier();
         }
     }
 }

@@ -17,10 +17,12 @@ public class AIInfo : MonoBehaviour
 {
 
     Rigidbody rb;
+    private float currentSpeed;
     public float speed = 5f;
+    public float chaseSpeed = 10f;
 
-    public GameObject wayPoints;
-    private int numbPoints;
+    public GameObject wayPoints = null;
+    private int numbPoints = 0;
 
     public GameObject currentTarget;
     private int targetIndex;
@@ -32,14 +34,18 @@ public class AIInfo : MonoBehaviour
 
     public int behaviourType;
 
+    public bool petrified = false;
+    public bool gargoylePermaChase = false;
+
     //Skull Stuff
-    public GameObject passiveEffect;
-    public GameObject hostileEffect;
+    //public GameObject passiveEffect;
+    //public GameObject hostileEffect;
 
 
     //// Start is called before the first frame update
     void Start()
     {
+        currentSpeed = speed;
         rb = gameObject.GetComponent<Rigidbody>();
         numbPoints = wayPoints.transform.childCount;
         currentTarget = wayPoints.transform.GetChild(0).gameObject;
@@ -53,7 +59,7 @@ public class AIInfo : MonoBehaviour
         {
             targetIndex = (targetIndex + 1) % numbPoints;
             currentTarget = wayPoints.transform.GetChild(targetIndex).gameObject;
-            rb.velocity = Vector3.zero;
+            //rb.velocity = Vector3.zero;
         }
         FaceTarget();
         GoTo();
@@ -72,7 +78,7 @@ public class AIInfo : MonoBehaviour
             }
             targetIndex = (targetIndex + stepDir) % numbPoints;
             currentTarget = wayPoints.transform.GetChild(targetIndex).gameObject;
-            rb.velocity = Vector3.zero;
+            //rb.velocity = Vector3.zero;
         }
         FaceTarget();
         GoTo();
@@ -101,13 +107,22 @@ public class AIInfo : MonoBehaviour
 
     void GoTo()
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime);
     }
 
-    void FaceTarget()
+    public void FaceTarget()
     {
-        transform.LookAt(currentTarget.transform);
+        //transform.LookAt(currentTarget.transform);
+        Vector3 targetDirection = currentTarget.transform.position - transform.position;
+        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, currentSpeed* Time.deltaTime, 0.0f);
+        transform.rotation = Quaternion.LookRotation(newDirection);
         
+    }
+
+    public void LookAtPlayer()
+    {
+        currentTarget = playerChar;
+        FaceTarget();
     }
 
     bool TargetReached()
@@ -124,31 +139,83 @@ public class AIInfo : MonoBehaviour
         }
     }
 
-    public void AdjustSpeed(int newSpeed)
+    //  Skull Bat Animations    //
+    public void AnimatorGoHostile()
     {
-        speed = newSpeed;
+        Animator anim = GetComponentInChildren<Animator>();
+        anim.SetBool("hostileMode", true);
+    }
+    public void AnimatorGoPassive()
+    {
+        Animator anim = GetComponentInChildren<Animator>();
+        anim.SetBool("hostileMode", false);
     }
 
-    public void SkullPassiveMode()
+    //  Ghost Animations    //
+    public void AnimatorGhostScream()
     {
-        GetComponentInChildren<SkullRattle>().rattleOff();
-        passiveEffect.SetActive(true);
-        hostileEffect.SetActive(false);
-        AdjustSpeed(1);
+        Animator anim = GetComponentInChildren<Animator>();
+        anim.Play("Scream");
     }
-    public void SkullHostileMode()
+    public bool IsScreaming()
     {
-        GetComponentInChildren<SkullRattle>().rattleOn();
-        passiveEffect.SetActive(false);
-        hostileEffect.SetActive(true);
-        AdjustSpeed(5);
+        Animator anim = GetComponentInChildren<Animator>();
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Scream"))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
-    //public void iSVisible()
-    //{
-    //    if (renderer.IsVisibleFrom(Camera.main))
-    //    {
+    public void FreezeAnimation()
+    {
+        Animator anim = GetComponentInChildren<Animator>();
+        anim.speed = 0;
+    }
+    public void StopShaking() {
+        GetComponentInChildren<SkullShake>().enabled = false;
+    }
+    public void PetrifyColor()
+    {
+        Renderer[] _material = GetComponentsInChildren<Renderer>();
+        Color originalColour = _material[0].material.color;
+        foreach (Renderer texture in _material)
+        {
+            texture.material.color = Color.Lerp(originalColour, Color.yellow, 0.5f);
+        }
+    }
+    // Change ghost's layer to default making it visible
+    public void MakeVisible(GameObject obj)
+    {
+        obj.layer = 0;
+        foreach (Transform child in obj.transform)
+        {
+            child.gameObject.layer = 0;
+            MakeVisible(child.gameObject);
+        }
+    }
 
-    //    }
-    //}
+    // For the gargoyle to prevent it from flying in the air
+    public void GroundedFaceTarget()
+    {
+        Vector3 targetDirection = currentTarget.transform.position - transform.position;
+        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, 5 * Time.deltaTime, 0.0f);
+        Quaternion groundedDirection = Quaternion.LookRotation(newDirection);
+        Vector3 _eulerAngles = groundedDirection.eulerAngles;
+        _eulerAngles.x = 0;
+        _eulerAngles.z = 0;
+        transform.rotation = Quaternion.LookRotation(newDirection);
+        transform.eulerAngles = _eulerAngles;
+
+    }
+    public void GroundedAggro()
+    {
+        currentTarget = playerChar;
+        GroundedFaceTarget();
+        GoTo();
+    }
+
 }

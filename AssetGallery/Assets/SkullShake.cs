@@ -14,13 +14,13 @@ public class SkullShake : MonoBehaviour
 {
     private float originalY;
     private bool goingUp = true;
-    private float offset = 0.9f;
+    private float offset = 0.5f;
     private float maxTop;
     private float maxBot;
 
     private void Start()
     {
-        originalY = transform.position.y;
+        originalY = transform.localPosition.y;
         maxTop = originalY + offset;
         maxBot = originalY - offset;
     }
@@ -29,22 +29,22 @@ public class SkullShake : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.y > maxTop)
+        if (transform.localPosition.y > maxTop)
         {
             goingUp = false;
         }
-        else if (transform.position.y < maxBot)
+        else if (transform.localPosition.y < maxBot)
         {
             goingUp = true;
         }
 
         if (goingUp)
         {
-            transform.Translate(Vector3.up * Time.deltaTime);
+            transform.Translate(Vector3.up * 2 * Time.deltaTime);
         }
         else
         {
-            transform.Translate(Vector3.down * Time.deltaTime);
+            transform.Translate(Vector3.down * 2 * Time.deltaTime);
         }
 
     }

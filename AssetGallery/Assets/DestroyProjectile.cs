@@ -30,4 +30,18 @@ public class DestroyProjectile : MonoBehaviour
         }
 
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        Destroy(gameObject);
+        if (other.gameObject.tag == "destructible")
+        {
+            Destroy(other.gameObject);
+        }
+        GameObject explodeFX = Instantiate(particle, transform.position, Quaternion.identity);
+        if (!(explodeFX == null))
+        {
+            Destroy(explodeFX, 0.5f);
+        }
+
+    }
 }

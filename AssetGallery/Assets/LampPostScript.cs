@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// -----------
+/// CISC 496 - Group P1 - Project: Eye Say
+/// Description: Script to turn lamp on & off
+///  - Note: The light may need to be reized if the lamppost is resized
+/// Written by: Sammy Chan
+/// ----------
+/// 
+
 public class LampPostScript : MonoBehaviour
 {
     public GameObject flame;

@@ -13,8 +13,29 @@ using UnityEngine.SceneManagement;
 
 public class Hazard : MonoBehaviour
 {
+    public bool active = true;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!active)
+        {
+            return;
+        }
+        Scene scene = SceneManager.GetActiveScene();
+        if (other.gameObject.tag == "player")
+        {
+            // Placeholder "Game Over" to reset scene
+            //SceneManager.LoadScene(scene.name);
+            //Debug.Log("Dead");
+            other.gameObject.GetComponent<playerController>().killPlayer();
+        }
+    }
     private void OnCollisionEnter(Collision other)
     {
+        if (!active)
+        {
+            return;
+        }
         Scene scene = SceneManager.GetActiveScene();
         if (other.gameObject.tag == "player")
         {
