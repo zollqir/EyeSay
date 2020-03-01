@@ -23,9 +23,9 @@ public class AIController : MonoBehaviour
     ///         11 = Skullbat Circular Patrol
     ///         12 = Skullbat Linear Patrol
     ///     Ghost:
-    ///         20 = Skullbat idle
-    ///         21 = Skullbat Circular Patrol
-    ///         22 = Skullbat Linear Patrol
+    ///         20 = Ghost idle
+    ///         21 = Ghost Circular Patrol
+    ///         22 = Ghost Linear Patrol
     ///     Gargoyle:
     ///         30 = Only behaviour type
     ///         the bool 'gargoylePermaChase' defines wether or not

@@ -15,6 +15,7 @@ public class Spell : MonoBehaviour
     public float speed = 100f;
     public GameObject ui;
     public GameObject barrier;
+    public Camera vrCam;
 
     /// ---
     /// Fire ball spell
@@ -49,11 +50,12 @@ public class Spell : MonoBehaviour
         }
         AIInfo[] enemies = FindObjectsOfType<AIInfo>();
 
-        ViewCheck vrCam = FindObjectOfType<ViewCheck>();
+        //ViewCheck vrCam = FindObjectOfType<ViewCheck>();
+        ViewCheck viewChecker = vrCam.GetComponent<ViewCheck>();
 
         foreach(AIInfo enemy in enemies)
         {
-            if (vrCam.InView(enemy.gameObject))
+            if (viewChecker.InView(enemy.gameObject))
             {
                 enemy.petrified = true;
             }
