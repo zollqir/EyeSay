@@ -218,4 +218,9 @@ public class AIInfo : MonoBehaviour
         GoTo();
     }
 
+    public void changeSpeed(float newSpeed)
+    {
+        currentSpeed = newSpeed;
+    }
+
 }
