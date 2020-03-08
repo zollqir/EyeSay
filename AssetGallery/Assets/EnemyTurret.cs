@@ -29,12 +29,15 @@ public class EnemyTurret : MonoBehaviour
     public float projectileSpeed = 100f;
     float startTime;
     float timePassed;
-    
+    public GameObject ui;
 
     // Start is called before the first frame update
     void Start()
     {
         //InvokeRepeating("Shoot", 0.0f, 1);
+        if (ui == null){
+            ui = GameObject.Find("UI Screens");
+        }
         startTime = Time.time;
         timePassed = 0;
         StartCoroutine("Firing");
@@ -42,7 +45,8 @@ public class EnemyTurret : MonoBehaviour
 
     void Shoot()
     {
-        GameObject fireBall = Instantiate(projectile, transform.position + transform.forward * 2, Quaternion.identity) as GameObject;
+        GameObject fireBall = Instantiate(projectile, transform.position + transform.forward*2, transform.rotation) as GameObject;
+        //fireBall.transform.rotation = ;
         Rigidbody fireBallRigidBody = fireBall.GetComponent<Rigidbody>();
         fireBallRigidBody.AddForce(transform.forward * projectileSpeed);
     }
@@ -69,6 +73,10 @@ public class EnemyTurret : MonoBehaviour
             startTime = Time.time;
             while (timePassed - startTime < fireDuration)
             {
+                while (ui.GetComponent<GameMenu>().isPaused)
+                {
+                    yield return null;
+                }
                 Shoot();
                 yield return new WaitForSecondsRealtime(firerate);
                 timePassed += Time.time - startTime;

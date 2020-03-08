@@ -28,7 +28,7 @@ public class Spell : MonoBehaviour
     {
         if (!(ui.GetComponent<GameMenu>().isPaused))
         {
-            GameObject fireBall = Instantiate(projectile, transform.position + transform.forward * 2, Quaternion.identity) as GameObject;
+            GameObject fireBall = Instantiate(projectile, transform.position + transform.forward * 2, transform.rotation) as GameObject;
             Rigidbody fireBallRigidBody = fireBall.GetComponent<Rigidbody>();
             fireBallRigidBody.AddForce(transform.forward * speed);
         }
@@ -88,8 +88,8 @@ public class Spell : MonoBehaviour
         //Placeholder trigger, replace with successful incantation
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            //Fireball();
-            Petrify();
+            Fireball();
+            //Petrify();
             //Barrier();
         }
     }
