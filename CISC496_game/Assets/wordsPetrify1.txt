@@ -1,2 +1,4 @@
 stone
-space
+golden
+midas
+evil
