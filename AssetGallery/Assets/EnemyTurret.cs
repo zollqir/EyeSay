@@ -67,7 +67,7 @@ public class EnemyTurret : MonoBehaviour
         //yield return new WaitForSecondsRealtime(cooldown);
         //timePassed = 0;
 
-        while (active)
+        while (active && Time.timeScale != 0)
         {
             timePassed = 0;
             startTime = Time.time;

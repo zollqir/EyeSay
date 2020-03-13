@@ -1696,6 +1696,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiObj: {fileID: 1686125724}
+  blood: {fileID: 235924765241297868, guid: 29cb110eddb9243f6b7259bc25509dc9, type: 3}
 --- !u!1001 &188650287
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7646,6 +7647,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UI Screens
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935932712163913998, guid: 8ebb9fce5947744ad878aefdf5405b4b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935932712587101338, guid: 8ebb9fce5947744ad878aefdf5405b4b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935932713170905515, guid: 8ebb9fce5947744ad878aefdf5405b4b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ebb9fce5947744ad878aefdf5405b4b, type: 3}

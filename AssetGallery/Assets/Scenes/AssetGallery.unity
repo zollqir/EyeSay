@@ -595,7 +595,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 109.80023}
+  m_BoundingSphereOverride: {x: 0, y: 2.3509887e-38, z: -8.796361e+12, w: 294326.25}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1614,6 +1614,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiObj: {fileID: 893000866}
+  blood: {fileID: 235924765241297868, guid: 29cb110eddb9243f6b7259bc25509dc9, type: 3}
 --- !u!1 &1517137021
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,12 +16,27 @@ public class playerController : MonoBehaviour
 {
 
     public GameObject uiObj;
+    public GameObject blood;
+    GameObject bloodFX;
 
     // Brings up a the gameOver screen
     // Triggerd by objects with the 'Hazard.cs' component
     public void killPlayer()
     {
-        uiObj.GetComponent<GameMenu>().Lose();
+
+
+        DeathAnimation();
+        gameObject.GetComponent<Renderer>().enabled = false;
+        gameObject.GetComponent<BoxCollider>().enabled = false;
+        GameMenu theMenu = uiObj.GetComponent<GameMenu>();
+        theMenu.Invoke("Lose", 2.0f) ;
+        //uiObj.GetComponent<GameMenu>().Lose();
+    }
+
+    public void DeathAnimation()
+    {
+        GameObject bloodFX = Instantiate(blood, transform.position, Quaternion.identity);
+        //yield return new WaitForSeconds(5f);
     }
 
     private void OnCollisionEnter(Collision other)
