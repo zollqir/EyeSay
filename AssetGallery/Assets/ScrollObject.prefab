@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 549176983909015312}
   - component: {fileID: 549176983909015311}
+  - component: {fileID: 926778902600919177}
   m_Layer: 0
   m_Name: ScrollObject
-  m_TagString: Untagged
+  m_TagString: destructible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,6 +45,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e298b772778704baa84d6fdbe567202a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotates: 1
+--- !u!65 &926778902600919177
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549176983909015310}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &549176983780264263
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51,11 +66,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 549176983909015312}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: cff063abfe7c64bfbab6f9f0b75f50dd,
-        type: 3}
-      propertyPath: m_Name
-      value: ScrollV6
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: cff063abfe7c64bfbab6f9f0b75f50dd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -125,6 +135,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: cff063abfe7c64bfbab6f9f0b75f50dd,
+        type: 3}
+      propertyPath: m_Name
+      value: ScrollV6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cff063abfe7c64bfbab6f9f0b75f50dd, type: 3}

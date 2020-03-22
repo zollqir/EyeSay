@@ -9,6 +9,9 @@ public class LevelScriptGargoyle : MonoBehaviour
     public GameObject hallwayGargoyles;
     public GameObject exit;
 
+    public GameObject fireScroll;
+    GameObject scrollCopy;
+
     public GameObject lampA;
     public GameObject lampB;
     public GameObject lampC;
@@ -43,6 +46,8 @@ public class LevelScriptGargoyle : MonoBehaviour
         cScript = lampC.GetComponent<LampPostScript>();
         dScript = lampD.GetComponent<LampPostScript>();
         eScript = lampE.GetComponent<LampPostScript>();
+
+        //scrollCopy = fireScroll;
     }
 
     void DisableFirstGargoyle()
@@ -74,9 +79,19 @@ public class LevelScriptGargoyle : MonoBehaviour
 
     }
 
+    void RespawnScroll()
+    {
+        if (scrollCopy == null)
+        {
+            scrollCopy = Instantiate(fireScroll, transform.position, transform.rotation);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
+        RespawnScroll();
+
         if (!pastFirstHallway && playerChar.transform.position.z > -8)
         {
             DisableFirstGargoyle();
@@ -116,7 +131,7 @@ public class LevelScriptGargoyle : MonoBehaviour
         }
         if (code.Length == 5 && !puzzleComplete)
         {
-            if( code == "abcde")
+            if( code == "acebd")
             {
                 exit.GetComponent<CrystalGoal>().Activate();
                 puzzleComplete = true;
@@ -127,5 +142,6 @@ public class LevelScriptGargoyle : MonoBehaviour
                 ResetLamps();
             }
         }
+
     }
 }
