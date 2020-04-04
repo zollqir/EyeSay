@@ -1,0 +1,12 @@
+pow
+fire
+shoot
+burn
+inferno
+bam
+blast
+flare
+ignite
+erupt
+scorch
+meteor
